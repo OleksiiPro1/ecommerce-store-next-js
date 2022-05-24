@@ -31,6 +31,7 @@ export default function Toyota(props) {
               <div>Model: {cars.model}</div>
               <div>Price: {cars.price}</div>
               <div>Type: {cars.type}</div>
+              <div>http://localhost:3000/toyota/2</div>
             </div>
           );
         })}
