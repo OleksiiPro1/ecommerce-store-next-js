@@ -88,24 +88,24 @@ export default function Home() {
           <div css={chooseLcText}>
             <h2>Thinking of buy a Toyota Supra?</h2>
             <p>
-              The 2022 Toyota Supra is a great option if you're shopping for a
+              The 2022 Toyota Supra is a great option if you re shopping for a
               luxury sports car . Thanks to its punchy turbocharged
               acceleration, lively handling, and composed ride, the Supra is a
-              joy to drive, whether you're carving along switchback roads or
+              joy to drive, whether you re carving along switchback roads or
               just cruising down the freeway. Its interior is handsome and
-              reasonably comfy for two, and there's enough cargo space for
+              reasonably comfy for two, and there s enough cargo space for
               weekend getaways. The Supra also earns praise for its easy-to-use
               infotainment system, numerous safety features, and top-notch fuel
               economy.
             </p>
 
             <p>
-              The 2022 Toyota Supra is a great option if you're shopping for a
+              The 2022 Toyota Supra is a great option if you re shopping for a
               luxury sports car . Thanks to its punchy turbocharged
               acceleration, lively handling, and composed ride, the Supra is a
-              joy to drive, whether you're carving along switchback roads or
+              joy to drive, whether you re carving along switchback roads or
               just cruising down the freeway. Its interior is handsome and
-              reasonably comfy for two, and there's enough cargo space for
+              reasonably comfy for two, and there s enough cargo space for
               weekend getaways. The Supra also earns praise for its easy-to-use
               infotainment system, numerous safety features, and top-notch fuel
               economy.
