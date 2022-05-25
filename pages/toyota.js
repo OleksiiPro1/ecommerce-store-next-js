@@ -28,10 +28,12 @@ export default function Toyota(props) {
         {props.toyota.map((cars) => {
           return (
             <div key={`cars-${cars.id}`} css={toyotaListItemsStyles}>
+              <Image src={`/${cars.id}.png`} width="78" height="48" />
+
               <div>Model: {cars.model}</div>
               <div>Price: {cars.price}</div>
               <div>Type: {cars.type}</div>
-              <div>http://localhost:3000/toyota/2</div>
+              <div>description: {cars.description}</div>
             </div>
           );
         })}

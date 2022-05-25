@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
         styles={css`
           html,
           body {
-            background: grey;
+            background: #f8f8ff;
             font-family: -ms-interpolation-mode;
           }
         `}

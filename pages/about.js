@@ -6,18 +6,17 @@ export default function About() {
   return (
     <div>
       <Head>
-        <title>about</title>
+        <title>
+          Helping millions of people drive our quality vehicles home
+        </title>
         <meta name="description" content="About dealer toyota" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>About</h1>
-        <Image src="/1.png" alt="toyota" width="390px" height="240px" />
-        <Image src="/2.png" alt="toyota" width="390px" height="240px" />
-        <Image src="/3.png" alt="toyota" width="390px" height="240px" />
-        <Image src="/4.png" alt="toyota" width="390px" height="240px" />
-        <Image src="/5.png" alt="toyota" width="390px" height="240px" />
-        <Image src="/6.png" alt="toyota" width="390px" height="240px" />
+        <h1>Helping millions of people drive our quality vehicles home</h1>
+        <Image src="/7.jpg" alt="toyota" width="1613px" height="600px" />
+        <h1>Driving success since 1957</h1>
+        <Image src="/8.jpg" alt="toyota" width="1613px" height="600px" />
       </main>
     </div>
   );
