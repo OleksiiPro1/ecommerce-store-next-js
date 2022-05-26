@@ -41,6 +41,14 @@ export default function Footer() {
           Hybrids <br />
           <br />
           Concept Vehicles <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          ©2022 Toyota Motor Sales, U.S.A., Inc. All information applies to U.S.
+          vehicles only.
+          <br />
         </div>
         <div>
           Toyota Financial <br />

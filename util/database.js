@@ -47,3 +47,78 @@ export const toyotaDatabase = [
     description: 'Practical, agile and flexible',
   },
 ];
+
+export const toyotaDatabase2 = [
+  {
+    id: '91',
+    model: 'Camry',
+    price: '29999 $',
+    type: 'Hybrid',
+    description:
+      'The Toyota Camry is an automobile sold internationally by the Japanese auto manufacturer',
+  },
+  {
+    id: '92',
+    model: 'Camry',
+    price: '29999 $',
+    type: 'Hybrid',
+    description:
+      'The Toyota Camry is an automobile sold internationally by the Japanese auto manufacturer',
+  },
+  {
+    id: '93',
+    model: 'Camry',
+    price: '29999 $',
+    type: 'Hybrid',
+    description:
+      'The Toyota Camry is an automobile sold internationally by the Japanese auto manufacturer',
+  },
+  {
+    id: '94',
+    model: 'Camry',
+    price: '29999 $',
+    type: 'Hybrid',
+    description:
+      'The Toyota Camry is an automobile sold internationally by the Japanese auto manufacturer',
+  },
+  {
+    id: '95',
+    model: 'Camry',
+    price: '29999 $',
+    type: 'Hybrid',
+    description:
+      'The Toyota Camry is an automobile sold internationally by the Japanese auto manufacturer',
+  },
+  {
+    id: '96',
+    model: 'Camry',
+    price: '29999 $',
+    type: 'Hybrid',
+    description:
+      'The Toyota Camry is an automobile sold internationally by the Japanese auto manufacturer',
+  },
+  {
+    id: '97',
+    model: 'Camry',
+    price: '29999 $',
+    type: 'Hybrid',
+    description:
+      'The Toyota Camry is an automobile sold internationally by the Japanese auto manufacturer',
+  },
+  {
+    id: '98',
+    model: 'Camry',
+    price: '29999 $',
+    type: 'Hybrid',
+    description:
+      'The Toyota Camry is an automobile sold internationally by the Japanese auto manufacturer',
+  },
+  {
+    id: '99',
+    model: 'Camry',
+    price: '29999 $',
+    type: 'Hybrid',
+    description:
+      'The Toyota Camry is an automobile sold internationally by the Japanese auto manufacturer',
+  },
+];

@@ -26,7 +26,7 @@ export default function Header() {
       </div>
       <div>
         <Link href="/toyota/3">Toyota Offers</Link>
-        <Link href="/toyota/4">My favorite car</Link>
+        <Link href="/toyota2/91">My favorite color</Link>
         <Link href="/toyota">All Toyota cars </Link>
         <Link href="/about">About Toyota</Link>
       </div>

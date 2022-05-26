@@ -8,7 +8,9 @@ const chooseLcText = css`
   padding-left: 90px;
   width: 80%;
 `;
-const chooseLcPic = css``;
+const chooseLcPic = css`
+  margin-left: 60px;
+`;
 const chooseLc = css`
   display: flex;
 
@@ -35,7 +37,7 @@ export default function Home() {
             <Image src="/10.jpg" alt="toyota" width="976px" height="549px" />
           </div>
           <div css={chooseLcText}>
-            <h2>Toyota Land Cruiser LC 300. Coming soon</h2>
+            <h2>Toyota Land Cruiser LC 300. Coming soon!</h2>
             <p>
               Since its launch in 1951, the Land Cruiser has supported the
               safety and security of its owners and passengers, and allowed

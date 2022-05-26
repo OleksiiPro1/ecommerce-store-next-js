@@ -8,8 +8,9 @@ function MyApp({ Component, pageProps }) {
         styles={css`
           html,
           body {
-            background: #f8f8ff;
-            font-family: -ms-interpolation-mode;
+            background: white;
+
+            font-family: ToyotaType-Regular, Arial, sans-serif;
           }
         `}
       />

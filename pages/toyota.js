@@ -18,12 +18,15 @@ export default function Toyota(props) {
   return (
     <div>
       <Head>
-        <title>Toyota</title>
+        <title>Toyota Motor Corporation</title>
         <meta name="description" content="About dealer toyota" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Toyota</h1>
+      <div>
+        <Image src="/15.png" alt="toyota" width="1534px" height="240px" />
+      </div>
+      <h1>Toyota Motor Corporation</h1>
       <div css={divToyotaListItemsStyles}>
         {props.toyota.map((cars) => {
           return (
