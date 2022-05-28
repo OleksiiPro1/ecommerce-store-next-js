@@ -25,10 +25,11 @@ export default function Header() {
         <Link href="/">Home</Link>
       </div>
       <div>
-        <Link href="/toyota/3">Toyota Offers</Link>
+        <Link href="/toyota/3">Best seller</Link>
         <Link href="/toyota2/91">My favorite color</Link>
         <Link href="/toyota">All Toyota cars </Link>
         <Link href="/about">About Toyota</Link>
+        <Link href="/about">🛒</Link>
       </div>
     </header>
   );

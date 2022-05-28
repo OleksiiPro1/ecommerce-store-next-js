@@ -4,6 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '../components/Layout';
 
+const chooseDivToyota = css`
+  margin-left: 100px;
+`;
 const chooseLcText = css`
   padding-left: 90px;
   width: 80%;
@@ -32,6 +35,29 @@ export default function Home() {
       </Head>
 
       <main>
+        <div css={chooseDivToyota}>
+          <h1>Choose your TOYOTA!)</h1>
+          <div css={chooseToyota}>
+            <Link href="/toyota/1">
+              <Image src="/1.png" alt="toyota" width="390px" height="240px" />
+            </Link>
+            <Link href="/toyota/2">
+              <Image src="/2.png" alt="toyota" width="390px" height="240px" />
+            </Link>
+            <Link href="/toyota/3">
+              <Image src="/3.png" alt="toyota" width="390px" height="240px" />
+            </Link>
+            <Link href="/toyota/4">
+              <Image src="/4.png" alt="toyota" width="390px" height="240px" />
+            </Link>
+            <Link href="/toyota/5">
+              <Image src="/5.png" alt="toyota" width="390px" height="240px" />
+            </Link>
+            <Link href="/toyota/6">
+              <Image src="/6.png" alt="toyota" width="390px" height="240px" />
+            </Link>
+          </div>
+        </div>
         <div css={chooseLc}>
           <div css={chooseLcPic}>
             <Image src="/10.jpg" alt="toyota" width="976px" height="549px" />
@@ -54,38 +80,12 @@ export default function Home() {
               today.
             </p>
             <p>
-              Since its launch in 1951, the Land Cruiser has supported the
-              safety and security of its owners and passengers, and allowed
-              people to go anywhere and everywhere and come back alive and safe.
               In order to continue living up to its reputation, the new Land
               Cruiser has evolved, and now boasts improved reliability,
               durability, and off-road performance.
             </p>
           </div>
         </div>
-
-        <h1>Choose your TOYOTA!)</h1>
-        <div css={chooseToyota}>
-          <Link href="/toyota/1">
-            <Image src="/1.png" alt="toyota" width="390px" height="240px" />
-          </Link>
-          <Link href="/toyota/2">
-            <Image src="/2.png" alt="toyota" width="390px" height="240px" />
-          </Link>
-          <Link href="/toyota/3">
-            <Image src="/3.png" alt="toyota" width="390px" height="240px" />
-          </Link>
-          <Link href="/toyota/4">
-            <Image src="/4.png" alt="toyota" width="390px" height="240px" />
-          </Link>
-          <Link href="/toyota/5">
-            <Image src="/5.png" alt="toyota" width="390px" height="240px" />
-          </Link>
-          <Link href="/toyota/6">
-            <Image src="/6.png" alt="toyota" width="390px" height="240px" />
-          </Link>
-        </div>
-
         <div css={chooseLc}>
           <div css={chooseLcText}>
             <h2>Thinking of buy a Toyota Supra?</h2>
@@ -108,9 +108,7 @@ export default function Home() {
               joy to drive, whether you re carving along switchback roads or
               just cruising down the freeway. Its interior is handsome and
               reasonably comfy for two, and there s enough cargo space for
-              weekend getaways. The Supra also earns praise for its easy-to-use
-              infotainment system, numerous safety features, and top-notch fuel
-              economy.
+              weekend getaways.
             </p>
           </div>
           <div css={chooseLcPic}>

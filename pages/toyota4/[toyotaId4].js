@@ -4,10 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { toyotaDatabase2 } from '../../util/database';
+import { toyotaDatabase4 } from '../../util/database';
 
-const chooseColor = css`
-  margin-left: 300px;
+const margColor = css`
+  margin-top: 79px;
 `;
 const b1Styles = css`
   font-size: 14px;
@@ -15,6 +15,10 @@ const b1Styles = css`
   background-color: white;
   color: black;
   border: 2px solid gray;
+`;
+const chooseColor = css`
+  margin-left: 300px;
+  margin-bottom: 110px;
 `;
 export default function Toyota(props) {
   if (!props.toyota) {
@@ -38,7 +42,6 @@ export default function Toyota(props) {
       return [0];
     }
   }
-
   const [count, setCount] = useState(0);
   return (
     <div>
@@ -51,43 +54,43 @@ export default function Toyota(props) {
           content={`${props.toyota.type} is a ${props.toyota.type} with a ${props.toyota.accessory}`}
         />
       </Head>
-
       <div css={chooseColor}>
         <div>
           <h1>Choose your color</h1>
-          <Link href="/toyota5/51">
+          <Link href="/toyota3/71">
             <button css={b1Styles}>Drag to rotate</button>
           </Link>
           <br />
+
           <div>
-            <Image src={`/${props.toyota.id}.webp`} width="624" height="328" />
+            <Image src={`/${props.toyota.id}.webp`} width="768" height="249" />
           </div>
-          <div>
-            <Link href="/toyota2/91">
+          <div css={margColor}>
+            <Link href="/toyota4/61">
               <Image src="/81.bmp" alt="toyota" width="50px" height="50px" />
             </Link>
-            <Link href="/toyota2/92">
+            <Link href="/toyota4/62">
               <Image src="/82.bmp" alt="toyota" width="50px" height="50px" />
             </Link>
-            <Link href="/toyota2/93">
+            <Link href="/toyota4/63">
               <Image src="/83.bmp" alt="toyota" width="50px" height="50px" />
             </Link>
-            <Link href="/toyota2/94">
+            <Link href="/toyota4/64">
               <Image src="/84.bmp" alt="toyota" width="50px" height="50px" />
             </Link>
-            <Link href="/toyota2/95">
+            <Link href="/toyota4/65">
               <Image src="/85.bmp" alt="toyota" width="50px" height="50px" />
             </Link>
-            <Link href="/toyota2/96">
+            <Link href="/toyota4/66">
               <Image src="/86.bmp" alt="toyota" width="50px" height="50px" />
             </Link>
-            <Link href="/toyota2/97">
+            <Link href="/toyota4/67">
               <Image src="/87.bmp" alt="toyota" width="50px" height="50px" />
             </Link>
-            <Link href="/toyota2/98">
+            <Link href="/toyota4/68">
               <Image src="/88.bmp" alt="toyota" width="50px" height="50px" />
             </Link>
-            <Link href="/toyota2/99">
+            <Link href="/toyota4/69">
               <Image src="/89.bmp" alt="toyota" width="50px" height="50px" />
             </Link>
           </div>
@@ -98,8 +101,8 @@ export default function Toyota(props) {
 }
 
 export function getServerSideProps(context) {
-  const foundToyota = toyotaDatabase2.find((toyota) => {
-    return toyota.id === context.query.toyotaId2;
+  const foundToyota = toyotaDatabase4.find((toyota) => {
+    return toyota.id === context.query.toyotaId4;
   });
   if (!foundToyota) {
     context.res.statusCode = 404;
