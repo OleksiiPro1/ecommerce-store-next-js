@@ -4,66 +4,73 @@ import { useState } from 'react';
 import { getParsedCookie, setStringifiedCookie } from '../../util/cookies';
 import { toyotaDatabase6 } from '../../util/database';
 
-export default function Fruit(props) {
-  const [isInDiet, setIsInDiet] = useState('eatCounter' in props.fruit);
+export default function toyota(props) {
+  const [isInCart, setIsInCart] = useState('insuranceCounter' in props.toyota);
 
-  const [eatCounter, setEatCounter] = useState(props.fruit.eatCounter || 0);
+  const [insuranceCounter, setInsuranceCounter] = useState(
+    props.toyota.insuranceCounter || 0,
+  );
 
   return (
     <div>
       <ul>
         <li>
-          <Image src={`/${props.fruit.id}.png`} width="78" height="48" />
+          <Image src={`/${props.toyota.id}.png`} width="78" height="48" />
         </li>
-        <li> Model: {props.fruit.model}</li>
-        <li>Type: {props.fruit.type}</li>
-        <li>Price: {props.fruit.price}</li>
+        <li> Model: {props.toyota.model}</li>
+        <li>Type: {props.toyota.type}</li>
+        <li>Price: {props.toyota.price}</li>
       </ul>
 
       <button
         onClick={() => {
-          const currentDiet = Cookies.get('diet')
-            ? getParsedCookie('diet')
+          const currentCart = Cookies.get('cart')
+            ? getParsedCookie('cart')
             : [];
-          let newDiet;
+          let newCart;
 
           if (
-            currentDiet.find((fruitInDiet) => props.fruit.id === fruitInDiet.id)
+            currentCart.find(
+              (toyotaInCart) => props.toyota.id === toyotaInCart.id,
+            )
           ) {
-            newDiet = currentDiet.filter(
-              (fruitInDiet) => fruitInDiet.id !== props.fruit.id,
+            newCart = currentCart.filter(
+              (toyotaInCart) => toyotaInCart.id !== props.toyota.id,
             );
-            setIsInDiet(false);
-            setEatCounter(0);
+            setIsInCart(false);
+            setInsuranceCounter(0);
           } else {
-            newDiet = [...currentDiet, { id: props.fruit.id, eatCounter: 0 }];
-            setIsInDiet(true);
+            newCart = [
+              ...currentCart,
+              { id: props.toyota.id, insuranceCounter: 0 },
+            ];
+            setIsInCart(true);
           }
 
-          setStringifiedCookie('diet', newDiet);
+          setStringifiedCookie('cart', newCart);
         }}
       >
-        {isInDiet ? 'remove from cart' : 'add to cart'}
+        {isInCart ? 'remove from cart' : 'add to cart'}
       </button>
       <br />
-      {isInDiet ? (
+      {isInCart ? (
         <>
-          {eatCounter}
+          {insuranceCounter}
           <button
             onClick={() => {
-              setEatCounter(eatCounter + 1);
+              setInsuranceCounter(insuranceCounter + 1);
 
-              const currentDiet = Cookies.get('diet')
-                ? getParsedCookie('diet')
+              const currentCart = Cookies.get('cart')
+                ? getParsedCookie('cart')
                 : [];
 
-              const currentFruitInDiet = currentDiet.find(
-                (fruitInDiet) => props.fruit.id === fruitInDiet.id,
+              const currentToyotaInCart = currentCart.find(
+                (toyotaInCart) => props.toyota.id === toyotaInCart.id,
               );
 
-              currentFruitInDiet.eatCounter += 1;
+              currentToyotaInCart.insuranceCounter += 1;
 
-              setStringifiedCookie('diet', currentDiet);
+              setStringifiedCookie('cart', currentCart);
             }}
           >
             add month
@@ -77,21 +84,21 @@ export default function Fruit(props) {
 }
 
 export function getServerSideProps(context) {
-  const currentDiet = JSON.parse(context.req.cookies.diet || '[]');
+  const currentCart = JSON.parse(context.req.cookies.cart || '[]');
 
-  const singleFruit = toyotaDatabase6.find((fruit) => {
-    return fruit.id === context.query.insuranceId;
+  const singleToyota = toyotaDatabase6.find((toyota) => {
+    return toyota.id === context.query.insuranceId;
   });
 
-  const currentFruitInDiet = currentDiet.find(
-    (fruitInDiet) => singleFruit.id === fruitInDiet.id,
+  const currentToyotaInCart = currentCart.find(
+    (toyotaInCart) => singleToyota.id === toyotaInCart.id,
   );
 
-  const superFruit = { ...singleFruit, ...currentFruitInDiet };
+  const superToyota = { ...singleToyota, ...currentToyotaInCart };
 
   return {
     props: {
-      fruit: superFruit,
+      toyota: superToyota,
     },
   };
 }
