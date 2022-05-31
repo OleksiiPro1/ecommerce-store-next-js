@@ -1,21 +1,34 @@
 import { css, Global } from '@emotion/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
+import { getLocalStorage, setLocalStorage } from '../util/localStorage';
 
 const cookieButton = (isOpen) => css`
   margin-left: 10px;
   color: grey;
 `;
-const cookiesBanner = (isOpen) => css`
-  height: ${isOpen ? '30px' : 0};
+const cookieBannerStyles = (isOpen) => css`
+  height: ${isOpen ? '25px' : 0};
   overflow: hidden;
-  transition: all 1000ms ease-in;
+  transition: all 200ms ease-in;
   margin-left: 1000px;
   color: grey;
 `;
 
-function MyApp({ Component, pageProps }) {
-  const [isCookieBannerOpen, setIsCookieBannerOpen] = useState(true);
+export default function App({ Component, pageProps }) {
+  const [areCookiesAccepted, setAreCookiesAccepted] = useState(false);
+
+  function cookieBannerButtonHandler() {
+    setLocalStorage('areCookiesAccepted', true);
+    setAreCookiesAccepted(true);
+  }
+
+  useEffect(() => {
+    if (getLocalStorage('areCookiesAccepted')) {
+      setAreCookiesAccepted(getLocalStorage('areCookiesAccepted'));
+    }
+  }, []);
+
   return (
     <>
       <Global
@@ -28,20 +41,21 @@ function MyApp({ Component, pageProps }) {
           }
         `}
       />
-      <div css={cookiesBanner(isCookieBannerOpen)}>
+      <div css={cookieBannerStyles(!areCookiesAccepted)}>
         This site uses cookies!
         <button
           css={cookieButton}
-          onClick={() => setIsCookieBannerOpen(!isCookieBannerOpen)}
+          onClick={() => {
+            cookieBannerButtonHandler();
+          }}
         >
           Accept all cookies
         </button>
       </div>
+
       <Layout>
         <Component {...pageProps} />
       </Layout>
     </>
   );
 }
-
-export default MyApp;

@@ -1,8 +1,9 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import Layout from '../components/Layout';
-import { toyotaDatabase } from '../util/database';
+import { toyotaDatabase6 } from '../util/database';
 
 const chooseDivToyota = css`
   margin-left: 50px;
@@ -36,12 +37,10 @@ export default function Toyota(props) {
           {props.toyota.map((cars) => {
             return (
               <div key={`cars-${cars.id}`} css={toyotaListItemsStyles}>
-                <Image src={`/${cars.id}.png`} width="78" height="48" />
-
+                <Image src={`/${cars.id}.png`} width="120" height="91" />
                 <div>Model: {cars.model}</div>
                 <div>Price: {cars.price}</div>
                 <div>Type: {cars.type}</div>
-                <div>description: {cars.description}</div>
               </div>
             );
           })}
@@ -51,10 +50,9 @@ export default function Toyota(props) {
   );
 }
 export function getServerSideProps() {
-  //  console.log(toyotaDatabase);
   return {
     props: {
-      toyota: toyotaDatabase,
+      toyota: toyotaDatabase6,
     },
   };
 }

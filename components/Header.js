@@ -29,7 +29,7 @@ export default function Header() {
         <Link href="/toyota2/91">My favorite color</Link>
         <Link href="/toyota">All Toyota cars </Link>
         <Link href="/about">About Toyota</Link>
-        <Link href="/about">🛒</Link>
+        <Link href="/cart">🛒</Link>
       </div>
     </header>
   );

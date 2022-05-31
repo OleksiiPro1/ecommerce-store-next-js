@@ -347,3 +347,49 @@ export const toyotaDatabase5 = [
       'The Toyota Camry is an automobile sold internationally by the Japanese auto manufacturer',
   },
 ];
+
+export const toyotaDatabase6 = [
+  {
+    id: '11',
+    model: 'Toyota Camry insurance',
+    price: '100$/month',
+    type: 'Hybrid',
+    description:
+      'The Toyota Camry is an automobile sold internationally by the Japanese auto manufacturer',
+  },
+  {
+    id: '12',
+    model: 'Toyota Rav4 insurance',
+    price: '100$/month',
+    type: 'Hybrid',
+    description: 'RAV4 was built to be driven and designed to stand out',
+  },
+  {
+    id: '13',
+    model: 'Toyota LC Prado insurance',
+    price: '100$/month',
+    type: 'Offroad',
+    description: 'Land Cruiser Prado insurance',
+  },
+  {
+    id: '14',
+    model: 'Toyota Highlander insurance',
+    price: '100$/month',
+    type: 'Offroad',
+    description: 'TOYOTA HIGHLANDER - A PREMIUM SUV',
+  },
+  {
+    id: '15',
+    model: 'Toyota Proace City insurance',
+    price: '100$/month',
+    type: 'Commercial',
+    description: 'Practical, agile and flexible',
+  },
+  {
+    id: '16',
+    model: 'Toyota Proace Verso insurance',
+    price: '100$/month',
+    type: 'Commercial',
+    description: 'Practical, agile and flexible',
+  },
+];
