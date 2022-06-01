@@ -12,7 +12,7 @@ const chooseDivToyota = css`
 
 export default function Cart(props) {
   const [count, setCount] = useState(1);
-  console.log(props);
+  // console.log(props);
   return (
     <div>
       <Head>
@@ -28,7 +28,21 @@ export default function Cart(props) {
         <h1>Toyota Motor Corporation</h1>
         <div>
           {props.toyota.map((detail) => {
-            return <div key={detail.toyotaInCart.id}></div>;
+            return (
+              <div key={detail.id}>
+                <Image src={`/${detail.id}.png`} width="78" height="48" />
+                <br />
+                {detail.model}
+                <br />
+                {detail.type}
+                <br />
+                {detail.price}
+                <br />
+                Quantity: {detail.quantity}
+                <br />
+                <br />
+              </div>
+            );
           })}
         </div>
       </div>
@@ -36,13 +50,13 @@ export default function Cart(props) {
   );
 }
 export function getServerSideProps(context) {
-  const currentCart = JSON.parse(context.req.cookies.toyota || '[]');
+  const currentCart = JSON.parse(context.req.cookies.cart || '[]');
+
   const toyotaInCart = currentCart.map((item) => {
     const itemFound = toyotaDatabase6.find((toyota) => toyota.id === item.id);
-    const newCart = { ...itemFound, quantity: item.count };
-    return newCart;
+    return { ...itemFound, quantity: item.insuranceCounter };
   });
-  console.log(toyotaDatabase6);
+
   return {
     props: {
       toyota: toyotaInCart || null,
