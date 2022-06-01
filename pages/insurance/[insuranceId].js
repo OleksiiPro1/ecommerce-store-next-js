@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import { getParsedCookie, setStringifiedCookie } from '../../util/cookies';
 import { toyotaDatabase6 } from '../../util/database';
@@ -75,6 +76,7 @@ export default function toyota(props) {
           >
             add month
           </button>
+          <Link href="/cart">🛒</Link>
         </>
       ) : (
         ''

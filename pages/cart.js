@@ -1,25 +1,18 @@
 import { css } from '@emotion/react';
+import Cookies from 'js-cookie';
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
-import Layout from '../components/Layout';
+import { React, useState } from 'react';
 import { toyotaDatabase6 } from '../util/database';
 
 const chooseDivToyota = css`
   margin-left: 50px;
   margin-right: 50px;
 `;
-const divToyotaListItemsStyles = css``;
 
-const toyotaListItemsStyles = css`
-  border: 1px solid #ccc;
-  padding: 12px;
-  & + & {
-    margin-top: 10px;
-  }
-`;
-
-export default function Toyota(props) {
+export default function Cart(props) {
+  const [count, setCount] = useState(1);
+  console.log(props);
   return (
     <div>
       <Head>
@@ -33,26 +26,26 @@ export default function Toyota(props) {
       </div>
       <div css={chooseDivToyota}>
         <h1>Toyota Motor Corporation</h1>
-        <div css={divToyotaListItemsStyles}>
-          {props.toyota.map((cars) => {
-            return (
-              <div key={`cars-${cars.id}`} css={toyotaListItemsStyles}>
-                <Image src={`/${cars.id}.png`} width="120" height="91" />
-                <div>Model: {cars.model}</div>
-                <div>Price: {cars.price}</div>
-                <div>Type: {cars.type}</div>
-              </div>
-            );
+        <div>
+          {props.toyota.map((detail) => {
+            return <div key={detail.toyotaInCart.id}></div>;
           })}
         </div>
       </div>
     </div>
   );
 }
-export function getServerSideProps() {
+export function getServerSideProps(context) {
+  const currentCart = JSON.parse(context.req.cookies.toyota || '[]');
+  const toyotaInCart = currentCart.map((item) => {
+    const itemFound = toyotaDatabase6.find((toyota) => toyota.id === item.id);
+    const newCart = { ...itemFound, quantity: item.count };
+    return newCart;
+  });
+  console.log(toyotaDatabase6);
   return {
     props: {
-      toyota: toyotaDatabase6,
+      toyota: toyotaInCart || null,
     },
   };
 }
