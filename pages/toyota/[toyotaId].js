@@ -52,7 +52,7 @@ const cStyles = css`
   justify-content: space-around;
   display: inline-block;
 `;
-
+const user = 'Alexey';
 export default function Toyota(props) {
   if (!props.toyota) {
     return (
@@ -117,7 +117,7 @@ export default function Toyota(props) {
                 </button>
                 <div>
                   <button css={b3Styles} onClick={() => setCount(1200)}>
-                    Add to cart
+                    Add to cart111111111111
                   </button>
                 </div>
               </div>
@@ -130,6 +130,7 @@ export default function Toyota(props) {
         <br />
         <br />
         <div>
+          <h1>Hello {user}</h1>
           <hr />
         </div>
         <br />

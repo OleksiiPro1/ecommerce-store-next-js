@@ -11,8 +11,8 @@ const chooseDivToyota = css`
 `;
 
 export default function Cart(props) {
-  const [count, setCount] = useState(1);
-  // console.log(props);
+  const [count, setCount] = useState(0);
+
   return (
     <div>
       <Head>
@@ -25,18 +25,20 @@ export default function Cart(props) {
         <Image src="/17.png" alt="toyota" width="1534px" height="240px" />
       </div>
       <div css={chooseDivToyota}>
-        <h1>Toyota Motor Corporation</h1>
+        <div>
+          <h1>Congratulations - You made the right choice!</h1>
+        </div>
         <div>
           {props.toyota.map((detail) => {
             return (
               <div key={detail.id}>
-                <Image src={`/${detail.id}.png`} width="78" height="48" />
+                <Image src={`/${detail.id}.png`} width="156px" height="96px" />
                 <br />
                 {detail.model}
                 <br />
                 {detail.type}
                 <br />
-                {detail.price}
+                {detail.price}$
                 <br />
                 Quantity: {detail.quantity}
                 <br />

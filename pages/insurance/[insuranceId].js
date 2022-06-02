@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -5,6 +6,34 @@ import { useState } from 'react';
 import { getParsedCookie, setStringifiedCookie } from '../../util/cookies';
 import { toyotaDatabase6 } from '../../util/database';
 
+const divBestStyles = css`
+  margin-top: -50px;
+  margin-bottom: 60px;
+`;
+
+const ulStyles = css`
+  list-style-type: none;
+`;
+const cartStyles = css`
+  float: left;
+  margin-right: 150px;
+`;
+const b1Styles = css`
+  font-size: 14px;
+  padding: 10px 24px;
+  background-color: white;
+  color: black;
+  border: 2px solid gray;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+`;
+
+const textStyles = css`
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 100px;
+`;
 export default function toyota(props) {
   const [isInCart, setIsInCart] = useState('insuranceCounter' in props.toyota);
 
@@ -14,16 +43,26 @@ export default function toyota(props) {
 
   return (
     <div>
-      <ul>
+      <div css={divBestStyles}>
+        <Image src="/price.png" alt="toyota" width="1350px" height="175px" />
+      </div>
+      <ul css={ulStyles}>
         <li>
-          <Image src={`/${props.toyota.id}.png`} width="78" height="48" />
+          <div css={cartStyles}>
+            <Image
+              src={`/${props.toyota.id}.png`}
+              width="390px"
+              height="240px"
+            />
+          </div>
         </li>
         <li> Model: {props.toyota.model}</li>
         <li>Type: {props.toyota.type}</li>
-        <li>Price: {props.toyota.price}</li>
+        <li>Price: {props.toyota.price}$</li>
       </ul>
 
       <button
+        css={b1Styles}
         onClick={() => {
           const currentCart = Cookies.get('cart')
             ? getParsedCookie('cart')
@@ -51,13 +90,14 @@ export default function toyota(props) {
           setStringifiedCookie('cart', newCart);
         }}
       >
-        {isInCart ? 'remove from cart' : 'add to cart'}
+        {isInCart ? 'remove from cart' : 'Bye now!'}
       </button>
       <br />
       {isInCart ? (
         <>
           {insuranceCounter}
           <button
+            css={b1Styles}
             onClick={() => {
               setInsuranceCounter(insuranceCounter + 1);
 
@@ -74,13 +114,49 @@ export default function toyota(props) {
               setStringifiedCookie('cart', currentCart);
             }}
           >
-            add month
+            add to cart
           </button>
           <Link href="/cart">🛒</Link>
         </>
       ) : (
         ''
       )}
+      <div css={textStyles}>
+        <br />
+        <br />
+        <div>
+          <hr />
+        </div>
+        <br />
+        <br />
+
+        <p>
+          Since its launch in 1951, the Land Cruiser has supported the safety
+          and security of its owners and passengers, and allowed people to go
+          anywhere and everywhere and come back alive and safe. In order to
+          continue living up to its reputation, the new Land Cruiser has
+          evolved, and now boasts improved reliability, durability, and off-road
+          performance.
+        </p>
+        <p>
+          The 2022 Toyota Supra is a great option if you re shopping for a
+          luxury sports car . Thanks to its punchy turbocharged acceleration,
+          lively handling, and composed ride, the Supra is a joy to drive,
+          whether you re carving along switchback roads or just cruising down
+          the freeway. Its interior is handsome and reasonably comfy for two,
+          and there s enough cargo space for weekend getaways. The Supra also
+          earns praise for its easy-to-use infotainment system, numerous safety
+          features, and top-notch fuel economy.
+        </p>
+        <p>
+          Since its launch in 1951, the Land Cruiser has supported the safety
+          and security of its owners and passengers, and allowed people to go
+          anywhere and everywhere and come back alive and safe. In order to
+          continue living up to its reputation, the new Land Cruiser has
+          evolved, and now boasts improved reliability, durability, and off-road
+          performance.
+        </p>
+      </div>
     </div>
   );
 }

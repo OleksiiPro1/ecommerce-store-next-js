@@ -39,22 +39,22 @@ export default function Home() {
           <h1>Choose your TOYOTA!)</h1>
           <div css={chooseToyota}>
             <Link href="/insurance/11">
-              <Image src="/1.png" alt="toyota" width="390px" height="240px" />
+              <Image src="/11.png" alt="toyota" width="390px" height="240px" />
             </Link>
             <Link href="/insurance/12">
-              <Image src="/2.png" alt="toyota" width="390px" height="240px" />
+              <Image src="/12.png" alt="toyota" width="390px" height="240px" />
             </Link>
             <Link href="/insurance/13">
-              <Image src="/3.png" alt="toyota" width="390px" height="240px" />
+              <Image src="/13.png" alt="toyota" width="390px" height="240px" />
             </Link>
             <Link href="/insurance/14">
-              <Image src="/4.png" alt="toyota" width="390px" height="240px" />
+              <Image src="/14.png" alt="toyota" width="390px" height="240px" />
             </Link>
             <Link href="/insurance/15">
-              <Image src="/5.png" alt="toyota" width="390px" height="240px" />
+              <Image src="/15.png" alt="toyota" width="390px" height="240px" />
             </Link>
             <Link href="/insurance/16">
-              <Image src="/6.png" alt="toyota" width="390px" height="240px" />
+              <Image src="/16.png" alt="toyota" width="390px" height="240px" />
             </Link>
           </div>
         </div>
