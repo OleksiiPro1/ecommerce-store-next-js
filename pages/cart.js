@@ -11,7 +11,11 @@ const chooseDivToyota = css`
 `;
 
 export default function Cart(props) {
-  const [count, setCount] = useState(0);
+  const [isInCart, setIsInCart] = useState('insuranceCounter' in props.toyota);
+
+  const [insuranceCounter, setInsuranceCounter] = useState(
+    props.toyota.insuranceCounter || 0,
+  );
 
   return (
     <div>
@@ -42,6 +46,25 @@ export default function Cart(props) {
                 <br />
                 Quantity: {detail.quantity}
                 <br />
+                <br />
+                <br />
+                <br />
+                <button
+                  onClick={() => {
+                    const updatedCart = cartState.filter((item) => {
+                      return item.itemId !== cartItem.itemId;
+                    });
+                    console.log('after filter: ', updatedCart);
+                    setStringifiedCookie('cart', updatedCart);
+                    setCartState(updatedCart);
+                    props.setCartCounter(props.cartCounter - 1);
+                  }}
+                >
+                  remove from cart
+                </button>
+                <br />
+                <br />
+                <hr />
                 <br />
               </div>
             );
