@@ -20,7 +20,7 @@ console.log(medium);
 export default function HowToProps(props) {
   const { name, color, engine } = props;
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(5);
   const [color1, setColor1] = useState('red');
 
   return (
@@ -33,7 +33,11 @@ export default function HowToProps(props) {
         {engine}
       </h1>
       <button type="button" onClick={() => setCount(count + 1)}>
-        {count} ++
+        +++
+      </button>
+      {count}
+      <button type="button" onClick={() => setCount(count - 1)}>
+        ---
       </button>
     </div>
   );

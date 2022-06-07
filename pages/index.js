@@ -36,7 +36,10 @@ export default function Home() {
 
       <main>
         <div css={chooseDivToyota}>
-          <h1>Choose your TOYOTA!)</h1>
+          <h1>
+            Choose your TOYOTA!
+            {')'}
+          </h1>
           <div css={chooseToyota}>
             <Link href="/insurance/11">
               <Image src="/11.png" alt="toyota" width="390px" height="240px" />

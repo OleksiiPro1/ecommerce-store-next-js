@@ -14,10 +14,12 @@ const divBestStyles = css`
 const ulStyles = css`
   list-style-type: none;
 `;
+
 const cartStyles = css`
   float: left;
   margin-right: 150px;
 `;
+
 const b1Styles = css`
   font-size: 14px;
   padding: 10px 24px;
@@ -34,12 +36,16 @@ const textStyles = css`
   margin-right: 100px;
   margin-top: 100px;
 `;
-export default function toyota(props) {
-  const [isInCart, setIsInCart] = useState('insuranceCounter' in props.toyota);
+
+export default function toyota({ toyota }) {
+  const [isInCart, setIsInCart] = useState('insuranceCounter' in toyota);
 
   const [insuranceCounter, setInsuranceCounter] = useState(
-    props.toyota.insuranceCounter || 0,
+    toyota.insuranceCounter || 0,
   );
+
+  console.log(isInCart, 'Is in cart');
+  console.log(insuranceCounter, 'Insurance Counter');
 
   return (
     <div>
@@ -49,16 +55,12 @@ export default function toyota(props) {
       <ul css={ulStyles}>
         <li>
           <div css={cartStyles}>
-            <Image
-              src={`/${props.toyota.id}.png`}
-              width="390px"
-              height="240px"
-            />
+            <Image src={`/${toyota.id}.png`} width="390px" height="240px" />
           </div>
         </li>
-        <li> Model: {props.toyota.model}</li>
-        <li>Type: {props.toyota.type}</li>
-        <li>Price: {props.toyota.price}$</li>
+        <li> Model: {toyota.model}</li>
+        <li>Type: {toyota.type}</li>
+        <li>Price: {toyota.price}$</li>
       </ul>
 
       <button
@@ -67,22 +69,23 @@ export default function toyota(props) {
           const currentCart = Cookies.get('cart')
             ? getParsedCookie('cart')
             : [];
+
           let newCart;
 
           if (
             currentCart.find(
-              (toyotaInCart) => props.toyota.id === toyotaInCart.id,
+              (toyotaInCart) => toyota.id === toyotaInCart.id, // [car1 {}, car2, car3, car4, car5] find car2  === car2 { }
             )
           ) {
             newCart = currentCart.filter(
-              (toyotaInCart) => toyotaInCart.id !== props.toyota.id,
+              (toyotaInCart) => toyota.id !== toyotaInCart.id,
             );
             setIsInCart(false);
             setInsuranceCounter(0);
           } else {
             newCart = [
-              ...currentCart,
-              { id: props.toyota.id, insuranceCounter: 0 },
+              ...currentCart, // [{1}, {2}, {3}, {4}] => {1}, {2}, {3}, {4},
+              { id: toyota.id, insuranceCounter: 0 },
             ];
             setIsInCart(true);
           }
@@ -90,7 +93,7 @@ export default function toyota(props) {
           setStringifiedCookie('cart', newCart);
         }}
       >
-        {isInCart ? 'remove from cart' : 'Bye now!'}
+        {isInCart ? 'Remove from cart' : 'I like it!'}
       </button>
       <br />
       {isInCart ? (
@@ -106,10 +109,10 @@ export default function toyota(props) {
                 : [];
 
               const currentToyotaInCart = currentCart.find(
-                (toyotaInCart) => props.toyota.id === toyotaInCart.id,
+                (toyotaInCart) => toyota.id === toyotaInCart.id,
               );
 
-              currentToyotaInCart.insuranceCounter += 1;
+              currentToyotaInCart.insuranceCounter += 1; // let item = 1; item += 1 <<== item = item + 1
 
               setStringifiedCookie('cart', currentCart);
             }}
@@ -180,3 +183,26 @@ export function getServerSideProps(context) {
     },
   };
 }
+
+// let car = {
+//  model: toyota,
+//  color: black,
+//  price: 10000,
+//}
+// if ( newPrice !== car.price ) {
+//  newCarState = {
+//  ...car,
+//  price: newPrice,
+//  }
+// }
+
+// price changed ? { ...car, price: newPrice}
+
+// object = {
+//  model: toyota,
+//  color: black,
+//  price: 10000,
+//}
+
+// object.color = 'red'
+// object.carType = 'sedan'

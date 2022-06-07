@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import Head from 'next/head';
 import Image from 'next/image';
 import { React, useState } from 'react';
+import { getParsedCookie, setStringifiedCookie } from '../util/cookies';
 import { toyotaDatabase6 } from '../util/database';
 
 const chooseDivToyota = css`
@@ -10,12 +11,45 @@ const chooseDivToyota = css`
   margin-right: 50px;
 `;
 
-export default function Cart(props) {
-  const [isInCart, setIsInCart] = useState('insuranceCounter' in props.toyota);
+export default function Cart({ toyota }) {
+  const [carsInCart, setCarsInCart] = useState(toyota); // <<<=== step 1 set current state from props
 
-  const [insuranceCounter, setInsuranceCounter] = useState(
-    props.toyota.insuranceCounter || 0,
-  );
+  const handleRemove = (carId) => {
+    const filteredCars = carsInCart.filter((car) => car.id !== carId); // >>> Props => State
+
+    const currentCookies = getParsedCookie('cart');
+    const newCookies = currentCookies.filter((cookie) => cookie.id !== carId);
+
+    setStringifiedCookie('cart', newCookies);
+    return setCarsInCart(filteredCars);
+  };
+
+  const handleChangeQuantity = (carId, action) => {
+    const newState = carsInCart.map((car) => {
+      if (car.id !== carId) {
+        return car;
+      }
+
+      switch (action) {
+        case 'decrease':
+          return {
+            ...car,
+            quantity: car.quantity - 1,
+          };
+
+        case 'increase':
+          return {
+            ...car,
+            quantity: car.quantity + 1,
+          };
+
+        default:
+          return car;
+      }
+    });
+
+    return setCarsInCart(newState);
+  };
 
   return (
     <div>
@@ -33,34 +67,41 @@ export default function Cart(props) {
           <h1>Congratulations - You made the right choice!</h1>
         </div>
         <div>
-          {props.toyota.map((detail) => {
+          {carsInCart.map((car) => {
             return (
-              <div key={detail.id}>
-                <Image src={`/${detail.id}.png`} width="156px" height="96px" />
+              <div key={car.id}>
+                <Image src={`/${car.id}.png`} width="156px" height="96px" />
                 <br />
-                {detail.model}
+                {car.model}
                 <br />
-                {detail.type}
+                {car.type}
                 <br />
-                {detail.price}$
+                {car.price}$
                 <br />
-                Quantity: {detail.quantity}
-                <br />
+                <button
+                  type="button"
+                  onClick={() => handleChangeQuantity(car.id, 'decrease')}
+                  disabled={car.quantity === 1}
+                >
+                  {'-'}
+                </button>
+                Quantity: {car.quantity}
+                <button
+                  type="button"
+                  onClick={() => handleChangeQuantity(car.id, 'increase')}
+                >
+                  {'+'}
+                </button>
                 <br />
                 <br />
                 <br />
                 <button
+                  type="button"
                   onClick={() => {
-                    const updatedCart = cartState.filter((item) => {
-                      return item.itemId !== cartItem.itemId;
-                    });
-                    console.log('after filter: ', updatedCart);
-                    setStringifiedCookie('cart', updatedCart);
-                    setCartState(updatedCart);
-                    props.setCartCounter(props.cartCounter - 1);
+                    handleRemove(car.id);
                   }}
                 >
-                  remove from cart
+                  Remove from cart
                 </button>
                 <br />
                 <br />
@@ -74,6 +115,7 @@ export default function Cart(props) {
     </div>
   );
 }
+
 export function getServerSideProps(context) {
   const currentCart = JSON.parse(context.req.cookies.cart || '[]');
 
