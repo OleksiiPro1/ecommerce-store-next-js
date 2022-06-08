@@ -11,17 +11,13 @@ const chooseDivToyota = css`
   margin-right: 50px;
 `;
 
-export default function Cart({ toyota }) {
-  const [carsInCart, setCarsInCart] = useState(toyota); // <<<=== step 1 set current state from props
+export default function Cart({ cart }) {
+  const [carsInCart, setCarsInCart] = useState(cart); // <<<=== step 1 set current state from props
 
   const handleRemove = (carId) => {
-    const filteredCars = carsInCart.filter((car) => car.id !== carId); // >>> Props => State
-
-    const currentCookies = getParsedCookie('cart');
-    const newCookies = currentCookies.filter((cookie) => cookie.id !== carId);
-
-    setStringifiedCookie('cart', newCookies);
-    return setCarsInCart(filteredCars);
+    const filteredCars = carsInCart.filter((car) => car.id !== carId);
+    setStringifiedCookie('cart', filteredCars);
+    setCarsInCart(filteredCars);
   };
 
   const handleChangeQuantity = (carId, action) => {
@@ -48,7 +44,8 @@ export default function Cart({ toyota }) {
       }
     });
 
-    return setCarsInCart(newState);
+    setStringifiedCookie('cart', newState);
+    setCarsInCart(newState);
   };
 
   return (
@@ -121,12 +118,13 @@ export function getServerSideProps(context) {
 
   const toyotaInCart = currentCart.map((item) => {
     const itemFound = toyotaDatabase6.find((toyota) => toyota.id === item.id);
-    return { ...itemFound, quantity: item.insuranceCounter };
+
+    return { ...itemFound, quantity: item.quantity || 1 };
   });
 
   return {
     props: {
-      toyota: toyotaInCart || null,
+      cart: toyotaInCart || null,
     },
   };
 }
