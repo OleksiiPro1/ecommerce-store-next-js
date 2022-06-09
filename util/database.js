@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 
 console.log(fs);
-
+// #region
 export const toyotaDatabase = [
   {
     id: '1',
@@ -347,6 +347,7 @@ export const toyotaDatabase5 = [
       'The Toyota Camry is an automobile sold internationally by the Japanese auto manufacturer',
   },
 ];
+// #endregion
 
 export const toyotaDatabase6 = [
   {

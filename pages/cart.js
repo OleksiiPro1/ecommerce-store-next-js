@@ -14,6 +14,8 @@ const chooseDivToyota = css`
 export default function Cart({ cart }) {
   const [carsInCart, setCarsInCart] = useState(cart); // <<<=== step 1 set current state from props
 
+  console.log(carsInCart)
+
   const handleRemove = (carId) => {
     const filteredCars = carsInCart.filter((car) => car.id !== carId);
     setStringifiedCookie('cart', filteredCars);
@@ -24,7 +26,7 @@ export default function Cart({ cart }) {
     const newState = carsInCart.map((car) => {
       if (car.id !== carId) {
         return car;
-      }
+      };
 
       switch (action) {
         case 'decrease':
@@ -65,6 +67,7 @@ export default function Cart({ cart }) {
         </div>
         <div>
           {carsInCart.map((car) => {
+            // console.log(car);
             return (
               <div key={car.id}>
                 <Image src={`/${car.id}.png`} width="156px" height="96px" />

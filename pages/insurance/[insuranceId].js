@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { getParsedCookie, setStringifiedCookie } from '../../util/cookies';
 import { toyotaDatabase6 } from '../../util/database';
 
+// #region css
 const divBestStyles = css`
   margin-top: -50px;
   margin-bottom: 60px;
@@ -36,16 +37,17 @@ const textStyles = css`
   margin-right: 100px;
   margin-top: 100px;
 `;
+// #endregion
 
 export default function toyota({ toyota }) {
-  const [isInCart, setIsInCart] = useState('insuranceCounter' in toyota);
+  const [isInCart, setIsInCart] = useState('insuranceCounter' in toyota); // boolean
 
-  const [insuranceCounter, setInsuranceCounter] = useState(
+  const [quantity, setQuantity] = useState(
     toyota.insuranceCounter || 0,
   );
 
   console.log(isInCart, 'Is in cart');
-  console.log(insuranceCounter, 'Insurance Counter');
+  console.log(quantity, 'Insurance Counter');
 
   return (
     <div>
@@ -58,7 +60,7 @@ export default function toyota({ toyota }) {
             <Image src={`/${toyota.id}.png`} width="390px" height="240px" />
           </div>
         </li>
-        <li> Model: {toyota.model}</li>
+        <li>Model: {toyota.model}</li>
         <li>Type: {toyota.type}</li>
         <li>Price: {toyota.price}$</li>
       </ul>
@@ -81,11 +83,11 @@ export default function toyota({ toyota }) {
               (toyotaInCart) => toyota.id !== toyotaInCart.id,
             );
             setIsInCart(false);
-            setInsuranceCounter(0);
+            setQuantity(0);
           } else {
             newCart = [
               ...currentCart, // [{1}, {2}, {3}, {4}] => {1}, {2}, {3}, {4},
-              { id: toyota.id, insuranceCounter: 0 },
+              { id: toyota.id, quantity: 0},
             ];
             setIsInCart(true);
           }
@@ -98,23 +100,23 @@ export default function toyota({ toyota }) {
       <br />
       {isInCart ? (
         <>
-          {insuranceCounter}
+          {quantity}
           <button
             css={b1Styles}
             onClick={() => {
-              setInsuranceCounter(insuranceCounter + 1);
+              setQuantity(quantity + 1); // step 1 quantity  + 1
 
-              const currentCart = Cookies.get('cart')
+              const currentCart = Cookies.get('cart') // step 2 read from cookies by 'cart' key
                 ? getParsedCookie('cart')
                 : [];
 
               const currentToyotaInCart = currentCart.find(
                 (toyotaInCart) => toyota.id === toyotaInCart.id,
-              );
+              ); // step 3 { car }
 
-              currentToyotaInCart.insuranceCounter += 1; // let item = 1; item += 1 <<== item = item + 1
+              currentToyotaInCart.quantity += 1; // step 4 set quantity property in currentToyota
 
-              setStringifiedCookie('cart', currentCart);
+              setStringifiedCookie('cart', currentCart); // step 6 set cart value to cookies
             }}
           >
             add to cart
@@ -176,6 +178,10 @@ export function getServerSideProps(context) {
   );
 
   const superToyota = { ...singleToyota, ...currentToyotaInCart };
+  console.log(singleToyota, 'singleToyota');
+  console.log(currentToyotaInCart, 'currentToyotaInCart');
+  console.log(superToyota, 'superToyota');
+
 
   return {
     props: {
@@ -184,25 +190,4 @@ export function getServerSideProps(context) {
   };
 }
 
-// let car = {
-//  model: toyota,
-//  color: black,
-//  price: 10000,
-//}
-// if ( newPrice !== car.price ) {
-//  newCarState = {
-//  ...car,
-//  price: newPrice,
-//  }
-// }
-
-// price changed ? { ...car, price: newPrice}
-
-// object = {
-//  model: toyota,
-//  color: black,
-//  price: 10000,
-//}
-
-// object.color = 'red'
-// object.carType = 'sedan'
+const lastName = 'Smith';
